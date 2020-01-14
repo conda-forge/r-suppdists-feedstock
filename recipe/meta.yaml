@@ -1,4 +1,4 @@
-{% set version = '1.1-9.4' %}
+{% set version = "1.1-9.5" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -11,11 +11,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/SuppDists_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/SuppDists/SuppDists_{{ version }}.tar.gz
-  sha256: fcb571150af66b95dcf0627298c54f7813671d60521a00ed157f63fc2247ddb9
+  sha256: 53f53002f7da34015b5466b3dd0a1cdfb49a0576a80401af1d66bc5049ba4606
 
 build:
   merge_build_host: True  # [win]
-  number: 1002
+  number: 0
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
