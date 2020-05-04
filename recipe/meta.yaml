@@ -11,12 +11,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/SuppDists_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/SuppDists/SuppDists_{{ version }}.tar.gz
-  sha256: 53f53002f7da34015b5466b3dd0a1cdfb49a0576a80401af1d66bc5049ba4606
+  sha256: 680b67145c07d44e200275e08e48602fe19cd99fb106c05422b3f4a244c071c4
 
 build:
   merge_build_host: True  # [win]
-  number: 0
-  skip: true  # [win32]
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
@@ -27,16 +26,16 @@ requirements:
     - {{ compiler('cxx') }}      # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
     - {{ compiler('m2w64_cxx') }}        # [win]
-    - {{posix}}filesystem        # [win]
-    - {{posix}}make
-    - {{posix}}sed               # [win]
-    - {{posix}}coreutils         # [win]
-    - {{posix}}zip               # [win]
+    - {{ posix }}filesystem        # [win]
+    - {{ posix }}make
+    - {{ posix }}sed               # [win]
+    - {{ posix }}coreutils         # [win]
+    - {{ posix }}zip               # [win]
   host:
     - r-base
   run:
     - r-base
-    - {{native}}gcc-libs         # [win]
+    - {{ native }}gcc-libs         # [win]
 
 test:
   commands:
@@ -45,7 +44,7 @@ test:
 
 about:
   home: no longer valid
-  license: GPL (>= 2)
+  license: GPL-2.0-later
   summary: Ten distributions supplementing those built into R. Inverse Gauss, Kruskal-Wallis,
     Kendall's Tau, Friedman's chi squared, Spearman's rho, maximum F ratio, the Pearson
     product moment correlation coefficient, Johnson distributions, normal scores and
