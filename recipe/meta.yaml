@@ -1,4 +1,4 @@
-{% set version = "1.1-9.5" %}
+{% set version = "1.1-9.7" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -7,30 +7,30 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: SuppDists_{{ version }}.tar.gz
   url:
     - {{ cran_mirror }}/src/contrib/SuppDists_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/SuppDists/SuppDists_{{ version }}.tar.gz
-  sha256: 680b67145c07d44e200275e08e48602fe19cd99fb106c05422b3f4a244c071c4
+  sha256: 6b5527e2635c0ff762eb7af8154704c85e66d7f79a9524089a5c98dfa94dab08
 
 build:
   merge_build_host: True  # [win]
-  number: 1
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - {{ compiler('c') }}        # [not win]
-    - {{ compiler('cxx') }}      # [not win]
+    - {{ compiler('c') }}              # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
-    - {{ compiler('m2w64_cxx') }}        # [win]
+    - {{ compiler('cxx') }}            # [not win]
+    - {{ compiler('m2w64_cxx') }}      # [win]
     - {{ posix }}filesystem        # [win]
     - {{ posix }}make
     - {{ posix }}sed               # [win]
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
   run:
@@ -43,15 +43,13 @@ test:
     - "\"%R%\" -e \"library('SuppDists')\""  # [win]
 
 about:
-  home: no longer valid
-  license: GPL-2.0-later
-  summary: Ten distributions supplementing those built into R. Inverse Gauss, Kruskal-Wallis,
-    Kendall's Tau, Friedman's chi squared, Spearman's rho, maximum F ratio, the Pearson
-    product moment correlation coefficient, Johnson distributions, normal scores and
-    generalized hypergeometric distributions. In addition two random number generators
-    of George Marsaglia are included.
-  license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
+  home: https://CRAN.R-project.org/package=SuppDists
+  license: GPL-2.0-or-later
+  summary: Ten distributions supplementing those built into R. Inverse Gauss, Kruskal-Wallis, Kendall's Tau, Friedman's chi squared, Spearman's rho, maximum F ratio, the Pearson product moment correlation coefficient, Johnson distributions, normal scores and generalized hypergeometric distributions. In addition two random
+    number generators of George Marsaglia are included.
+  license_family: GPL2
+  license_file:
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
 
 extra:
   recipe-maintainers:
