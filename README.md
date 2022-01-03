@@ -1,9 +1,9 @@
 About r-suppdists
 =================
 
-Home: no longer valid
+Home: https://CRAN.R-project.org/package=SuppDists
 
-Package license: GPL-2.0-later
+Package license: GPL-2.0-or-later
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-suppdists-feedstock/blob/master/LICENSE.txt)
 
